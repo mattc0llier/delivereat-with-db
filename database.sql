@@ -10,7 +10,8 @@ CREATE TABLE menu (
 
 CREATE TABLE purchase (
   id serial PRIMARY KEY,
-  purchaseTime VARCHAR
+  created_at CURRENT_TIMESTAMP,
+  created_on CURRENT_DATE
 );
 
 
