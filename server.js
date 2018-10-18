@@ -1,18 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const pgp = require('pg-promise')();
 
 app.use(bodyParser.json());
 app.use('/static', express.static('static'));
 app.set('view engine', 'hbs');
 
-const menu = {
-  1: {
-    id: 1,
-    name: "Strawberry cheesecake",
-    price: 6
-  }
-};
+const db = pgp({
+    host: 'localhost',
+    port: 5432,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD
+});
+
+
 
 app.get('/', function(req, res){
   res.render('index');
