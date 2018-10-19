@@ -37,7 +37,7 @@ class App extends React.Component {
 
       const beerOrder = {
         [beer.id]: {
-          menuItemId: beer.id,
+          menuId: beer.id,
           menuItemName: beer.name,
           quantity: newBeerQuantity
         }
@@ -68,24 +68,31 @@ class App extends React.Component {
   }
 
   receiveSubmittedOrder(currentBasket){
-  //   console.log('before', currentBasket)
-  //
-  //   fetch('/api/order', {
-  //     method: 'post',
-  //     body: JSON.stringify(currentBasket),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  // }).then(function(response) {
-  //   return response.json();
-  // }).then(order => {
-  //   console.log('order', order);
-  //   this.setState({
-  //     orders: this.state.orders.concat(order)
-  //   })
-  //
-  //   console.log('all orders', this.state.orders);
-  // });
+    console.log('before', currentBasket)
+
+    const submittedOrder = {
+      items: currentBasket
+    }
+
+    console.log('reformat', submittedOrder)
+
+
+    fetch('/api/purchase', {
+      method: 'post',
+      body: JSON.stringify(submittedOrder),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+  }).then(function(response) {
+    return response.json();
+  }).then(order => {
+    console.log('order', order);
+    this.setState({
+      orders: this.state.orders.concat(order)
+    })
+
+    console.log('all orders', this.state.orders);
+  });
 
 
   }
