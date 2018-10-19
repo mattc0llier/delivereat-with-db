@@ -1,5 +1,7 @@
 import React from 'react';
 import MenuItem from './MenuItem';
+import Basket from './Basket.js';
+import Orders from './Orders.js';
 
 import '../styles/App.scss';
 
@@ -8,6 +10,12 @@ class App extends React.Component {
     super();
 
     this.state = { menu: {} }
+
+    this.state = { menu: {}, currentBasket: [], totalBasket: [], orders: [] }
+
+    this.receiveBeerQuantity = this.receiveBeerQuantity.bind(this)
+    this.receiveSubmittedOrder = this.receiveSubmittedOrder.bind(this)
+    this.updateTotalBasket = this.updateTotalBasket.bind(this)
   }
 
   componentDidMount(){
@@ -21,8 +29,73 @@ class App extends React.Component {
     })
   }
 
+  receiveBeerQuantity(beer, newBeerQuantity){
+
+    if(newBeerQuantity > 0){
+      console.log('more than zero');
+      console.log('what is the result', this.state.currentBasket.menuItemId);
+    //
+    //   // const beerOrder = {
+    //   //   [beer.id]: {
+    //   //   menuItemId: beer.id,
+    //   //   menuItemName: beer.name,
+    //   //   quantity: newBeerQuantity
+    //   // }
+    // }
+      // const updatedOrder = Object.assign({}, this.state.currentBasket, beerOrder)
+      //
+      // this.setState({
+      //   currentBasket: updatedOrder
+      // },
+      // () => console.log(this.state.currentBasket))
+    } else {
+      // const orderToUpdate = this.state.currentBasket;
+      // delete orderToUpdate[beer.id];
+      console.log('before', this.state.currentBasket);
+
+      // this.setState({
+      //   currentBasket: this.state.currentBasket
+      // })
+      //console.log('after', this.state.currentBasket);
+  }
+}
+
+  updateTotalBasket(){
+    const deliveryCost = 300
+    this.setState({
+      totalBasket: totalBasket
+    })
+  }
+
+  receiveSubmittedOrder(currentBasket){
+  //   console.log('before', currentBasket)
+  //
+  //   fetch('/api/order', {
+  //     method: 'post',
+  //     body: JSON.stringify(currentBasket),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  // }).then(function(response) {
+  //   return response.json();
+  // }).then(order => {
+  //   console.log('order', order);
+  //   this.setState({
+  //     orders: this.state.orders.concat(order)
+  //   })
+  //
+  //   console.log('all orders', this.state.orders);
+  // });
+
+
+  }
+
+
+
   render(){
-    const menuArr = Object.values(this.state.menu)
+    const menuArr = Object.values(this.state.menu);
+    const basketExists = !!this.state.currentBasket;
+
     return (
       <div>
         <header>
@@ -51,6 +124,17 @@ class App extends React.Component {
           </div>
 
         </main>
+
+        <div className="dynamic">
+          {basketExists ? (
+            <Basket
+              currentBasket={this.state.currentBasket}
+              receiveSubmittedOrder={this.receiveSubmittedOrder}
+            />
+          ) : null}
+            <Orders orders={this.state.orders} />
+        </div>
+
 
       </div>
     )

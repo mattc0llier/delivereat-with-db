@@ -48,14 +48,29 @@ app.post('/api/purchase', function(req, res){
 // }
 
 
+// But i want it like
+
+// "items": {
+//       "1": {
+//           "menuId": 1,
+//           "quantity": 2
+//       },
+//       "2": {
+//           "menuId": 2,
+//           "quantity": 3
+//       }
+//   }
+
+
+
+  const { items } = req.body;
   db.one(`INSERT INTO purchase (created_at) VALUES (NOW()) RETURNING id`)
 
   .then(function(newPurchase){
       const orderId = newPurchase.id;
-      const { items } = req.body;
       return Promise.all(
 
-        items.map(item => {
+        Object.values(items).map(item => {
           return db.none(`INSERT INTO menu_purchase (quantity, menu_id, purchase_id) VALUES($1, $2, $3)`, [item.quantity, item.menuId, orderId])
         })
       ).then(() => orderId)
