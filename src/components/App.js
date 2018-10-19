@@ -34,29 +34,29 @@ class App extends React.Component {
     if(newBeerQuantity > 0){
       console.log('more than zero');
       console.log('what is the result', this.state.currentBasket.menuItemId);
-    //
-    //   // const beerOrder = {
-    //   //   [beer.id]: {
-    //   //   menuItemId: beer.id,
-    //   //   menuItemName: beer.name,
-    //   //   quantity: newBeerQuantity
-    //   // }
-    // }
-      // const updatedOrder = Object.assign({}, this.state.currentBasket, beerOrder)
-      //
-      // this.setState({
-      //   currentBasket: updatedOrder
-      // },
-      // () => console.log(this.state.currentBasket))
+
+      const beerOrder = {
+        [beer.id]: {
+          menuItemId: beer.id,
+          menuItemName: beer.name,
+          quantity: newBeerQuantity
+        }
+      }
+      const updatedOrder = Object.assign({}, this.state.currentBasket, beerOrder)
+
+      this.setState({
+        currentBasket: updatedOrder
+      },
+      () => console.log(this.state.currentBasket))
     } else {
-      // const orderToUpdate = this.state.currentBasket;
-      // delete orderToUpdate[beer.id];
+      const orderToUpdate = this.state.currentBasket;
+      delete orderToUpdate[beer.id];
       console.log('before', this.state.currentBasket);
 
-      // this.setState({
-      //   currentBasket: this.state.currentBasket
-      // })
-      //console.log('after', this.state.currentBasket);
+      this.setState({
+        currentBasket: this.state.currentBasket
+      })
+      console.log('after', this.state.currentBasket);
   }
 }
 

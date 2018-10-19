@@ -40,16 +40,6 @@ app.get('/api/purchases', function(req, res){
 
 app.post('/api/purchase', function(req, res){
 
-// {
-//   "items": [
-//     { "menuId": 1, "quantity": 10 },
-//     { "menuId": 2, "quantity": 3 }
-//   ]
-// }
-
-
-// But i want it like
-
 // "items": {
 //       "1": {
 //           "menuId": 1,
