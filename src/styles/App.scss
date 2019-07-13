@@ -1,3 +1,108 @@
+$primary-color: #fff;
+$background-color: #e3b104;
+$action-color: fff;
+$divider-color: #CCCCCC;
+$text-color: #2f291d;
+$title-font: 'KoHo', sans-serif;
+
+
 body {
-  background-color: Cornsilk;
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $title-font
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-size: 3rem;
+}
+
+.main {
+  background-color: $primary-color;
+  color: $text-color;
+  margin: 20px;
+  display: flex;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__pickBrewery {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  &__beers {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    img {
+
+      max-width: 400px;
+    }
+
+  }
+
+}
+
+.basket {
+  background-color: $primary-color;
+  border-bottom: 1px solid $divider-color;
+  padding: 10px;
+}
+
+.basket__item {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.orders {
+  background-color: $primary-color;
+  border-bottom: 1px solid $divider-color;
+  padding: 10px;
+}
+
+///
+.wrapper {
+  padding: 50px;
+}
+
+.toggle-component {
+  font-size: 2rem;
+  color: #171717;
+  width: 50px;
+  height: 20px;
+  background: #777777;
+  border: 1px solid #555;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color background-color 0.3s;
+  margin: 10px;
+}
+.toggle-component.active {
+  background: #66CC99;
+  border-color: #dfdfdf;
+}
+.toggle-component.active .toggle-button {
+  right: -2px;
+}
+.toggle-component .toggle-button {
+  position: absolute;
+  top: -3px;
+  right: 50%;
+  height: 26px;
+  width: 26px;
+  background: #dfdfdf;
+  box-shadow: 0 0 5px #555;
+  border-radius: 50%;
+  transition: right 0.3s;
 }

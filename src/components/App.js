@@ -15,7 +15,6 @@ class App extends React.Component {
 
     this.receiveBeerQuantity = this.receiveBeerQuantity.bind(this)
     this.receiveSubmittedOrder = this.receiveSubmittedOrder.bind(this)
-    this.updateTotalBasket = this.updateTotalBasket.bind(this)
   }
 
   componentDidMount(){
@@ -60,12 +59,6 @@ class App extends React.Component {
   }
 }
 
-  updateTotalBasket(){
-    const deliveryCost = 300
-    this.setState({
-      totalBasket: totalBasket
-    })
-  }
 
   receiveSubmittedOrder(currentBasket){
     console.log('before', currentBasket)
@@ -138,7 +131,13 @@ class App extends React.Component {
               currentBasket={this.state.currentBasket}
               receiveSubmittedOrder={this.receiveSubmittedOrder}
             />
+
+
           ) : null}
+          <div className="main__ludicrous">
+            <h2>Ludicrous mode</h2>
+            <button>Activate</button>
+          </div>
             <Orders orders={this.state.orders} />
         </div>
 

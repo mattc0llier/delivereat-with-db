@@ -29,7 +29,7 @@ class MenuItem extends React.Component {
         <img src={this.props.beer.image} />
         <h4>{this.props.beer.name}</h4>
         <h4>{this.props.beer.brewery}</h4>
-        <h4>{this.props.beer.price /100}</h4>
+        <h4>£{this.props.beer.price /100}</h4>
         <div>
           <h2>Quantity:</h2>
           <form>
